@@ -1,0 +1,301 @@
+{
+	"info": {
+		"_postman_id": "84e59787-31db-4e65-b118-ddeefc28f449",
+		"name": "javaclass",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "employees get",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{basepath}}/employees",
+					"host": [
+						"{{basepath}}"
+					],
+					"path": [
+						"employees"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "employees post",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "b7c11bb5-8a8b-4fac-9bbd-86c0523b110a",
+						"exec": [
+							"var jsonData = pm.response.json();",
+							"console.log(jsonData);",
+							"pm.environment.set(\"newEmployeeId\", jsonData.id);",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Donald Trump\",\n    \"role\": \"president\"\n}"
+				},
+				"url": {
+					"raw": "{{basepath}}/employees",
+					"host": [
+						"{{basepath}}"
+					],
+					"path": [
+						"employees"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "employees get new",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "10a18fac-4d37-4b8f-9d1b-2b49efb4300a",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"pm.test(\"Your test name\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.role).to.eql(\"president\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Donald Trump\",\n    \"role\": \"ex-president\"\n}"
+				},
+				"url": {
+					"raw": "{{basepath}}/employees/{{newEmployeeId}}",
+					"host": [
+						"{{basepath}}"
+					],
+					"path": [
+						"employees",
+						"{{newEmployeeId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "employees put",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "10a18fac-4d37-4b8f-9d1b-2b49efb4300a",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Donald Trump\",\n    \"role\": \"ex-president\"\n}"
+				},
+				"url": {
+					"raw": "{{basepath}}/employees/{{newEmployeeId}}",
+					"host": [
+						"{{basepath}}"
+					],
+					"path": [
+						"employees",
+						"{{newEmployeeId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "employees get new",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "10a18fac-4d37-4b8f-9d1b-2b49efb4300a",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"pm.test(\"Your test name\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.role).to.eql(\"ex-president\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Donald Trump\",\n    \"role\": \"ex-president\"\n}"
+				},
+				"url": {
+					"raw": "{{basepath}}/employees/{{newEmployeeId}}",
+					"host": [
+						"{{basepath}}"
+					],
+					"path": [
+						"employees",
+						"{{newEmployeeId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "employees delete",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "10a18fac-4d37-4b8f-9d1b-2b49efb4300a",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Donald Trump\",\n    \"role\": \"ex-president\"\n}"
+				},
+				"url": {
+					"raw": "{{basepath}}/employees/{{newEmployeeId}}",
+					"host": [
+						"{{basepath}}"
+					],
+					"path": [
+						"employees",
+						"{{newEmployeeId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "employees get new fail!",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "10a18fac-4d37-4b8f-9d1b-2b49efb4300a",
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {",
+							"    pm.response.to.have.status(404);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Donald Trump\",\n    \"role\": \"ex-president\"\n}"
+				},
+				"url": {
+					"raw": "{{basepath}}/employees/{{newEmployeeId}}",
+					"host": [
+						"{{basepath}}"
+					],
+					"path": [
+						"employees",
+						"{{newEmployeeId}}"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
